@@ -19,8 +19,9 @@ body {
   min-height: 80px;
   padding: 5px;
   display: flex;
+  flex-direction: column-reverse;
   align-items: end;
-  justify-content: end;
+  justify-content: space-around;
 }
 button {
   padding: 8px;
