@@ -9,8 +9,18 @@ let input = document.createElement("p");
 userDisplay.appendChild(input);
 const btnClicks = (event) => {
   if (event.target.tagName !== "BUTTON") return;
-
-  input.textContent += event.target.value;
+  let userInput = event.target.value;
+  if (!isNaN(userInput)) {
+    if (!number1.length) {
+      number1 = userInput;
+    } else if (!operator) {
+      number1 += userInput;
+    }
+  }
+  if (isNaN(userInput)) {
+    operator = userInput;
+  }
+  input.textContent = number1 + operator;
 };
 
 btnSelection.addEventListener("click", btnClicks);
