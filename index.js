@@ -13,14 +13,23 @@ const btnClicks = (event) => {
   if (!isNaN(userInput)) {
     if (!number1.length) {
       number1 = userInput;
-    } else if (!operator) {
+      console.log(operator);
+    } else if (!operator.length) {
       number1 += userInput;
+    } else if (!number2.length) {
+      number2 = userInput;
+    } else {
+      number2 += userInput;
     }
   }
   if (isNaN(userInput)) {
     operator = userInput;
   }
-  input.textContent = number1 + operator;
+  if (number2 == 0) {
+    input.textContent = number1 + operator;
+  } else {
+    input.textContent = number1 + operator + number2;
+  }
 };
 
 btnSelection.addEventListener("click", btnClicks);
