@@ -7,6 +7,8 @@ let userDisplay = document.querySelector(".user-num");
 let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
+// inputs numbers and operators fxn
+
 const handleNumberInput = (input) => {
   if (!number1.length) {
     number1 = input;
@@ -23,17 +25,24 @@ const handleOperator = (input) => {
     operator = input;
   }
 };
-
+//display updated fxns
 const updateDisplay = () => {
   if (!operator.length) {
     input.textContent = number1;
     mainDisplay.appendChild(input);
   } else if (!number2.length) {
+    deleteDisplay(mainDisplay);
     input.textContent = number1 + operator;
+    userDisplay.append(input);
   } else {
     input.textContent = number1 + operator + number2;
   }
 };
+
+const deleteDisplay = (elem) => {
+  elem.remove();
+};
+
 const btnClicks = (event) => {
   if (event.target.tagName !== "BUTTON") return;
   let userInput = event.target.value;
