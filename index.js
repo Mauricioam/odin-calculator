@@ -6,21 +6,40 @@ let btnSelection = document.querySelector(".btn-container");
 let userDisplay = document.querySelector(".user-num");
 let input = document.createElement("p");
 
-const handleNumberInput = (input, num1, num2, operator) => {
-  console.log(num1.length);
-  if (!num1.length) {
-    return (num1 = input);
-  } else {
-    return (num1 += input);
+const handleNumberInput = (input) => {
+  if (!number1.length) {
+    number1 = input;
+  } else if (!operator.length && !isNaN(input)) {
+    number1 += input;
+  } else if (number1.length && operator.length && !isNaN(input)) {
+    number2 += input;
   }
 };
 
+const handleOperator = (input) => {
+  if (number2.length) return;
+  if (number1.length && isNaN(input) && input !== "=") {
+    operator = input;
+  }
+};
 userDisplay.appendChild(input);
+const updateDisplay = () => {
+  if (!operator.length) {
+    input.textContent = number1;
+  } else if (!number2.length) {
+    input.textContent = number1 + operator;
+  } else {
+    input.textContent = number1 + operator + number2;
+  }
+};
 const btnClicks = (event) => {
   if (event.target.tagName !== "BUTTON") return;
   let userInput = event.target.value;
-  number1 = handleNumberInput(userInput, number1, number2, operator);
-  console.log(number1, "aca");
+
+  handleNumberInput(userInput);
+  handleOperator(userInput);
+  updateDisplay();
+  console.log(number1, operator, number2);
   // if (!isNaN(userInput)) {
   //   if (!number1.length) {
   //     number1 = userInput;
