@@ -26,3 +26,12 @@ body {
 button {
   padding: 8px;
 }
+
+.display-num {
+  font-size: 30px;
+  border: 1px solid salmon;
+}
+
+.user-num {
+  border: 2px solid orange;
+}
