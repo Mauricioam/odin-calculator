@@ -4,6 +4,7 @@ let operator = "";
 
 let btnSelection = document.querySelector(".btn-container");
 let userDisplay = document.querySelector(".user-num");
+let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
@@ -22,10 +23,11 @@ const handleOperator = (input) => {
     operator = input;
   }
 };
-userDisplay.appendChild(input);
+
 const updateDisplay = () => {
   if (!operator.length) {
     input.textContent = number1;
+    mainDisplay.appendChild(input);
   } else if (!number2.length) {
     input.textContent = number1 + operator;
   } else {
