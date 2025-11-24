@@ -44,13 +44,17 @@ const deleteDisplay = (elem) => {
 };
 
 const btnClicks = (event) => {
+  event.preventDefault();
   if (event.target.tagName !== "BUTTON") return;
   let userInput = event.target.value;
 
   handleNumberInput(userInput);
   handleOperator(userInput);
   updateDisplay();
-  console.log(number1, operator, number2);
+  if (userInput == "=") {
+    console.log(operate(number1, operator, number2));
+  }
+
   // if (!isNaN(userInput)) {
   //   if (!number1.length) {
   //     number1 = userInput;
@@ -73,9 +77,15 @@ const btnClicks = (event) => {
   // }
 };
 
+const convertToNum = (strg) => Number(strg);
+
 btnSelection.addEventListener("click", btnClicks);
 
 const operate = (num1, operator, num2) => {
+  if (num1 == undefined && num2 == undefined && operator == undefined) return;
+  num1 = convertToNum(num1);
+  num2 = convertToNum(num2);
+
   const add = (num1, num2) => num1 + num2;
   const substract = (num1, num2) => num1 - num2;
   const multiply = (num1, num2) => num1 * num2;
