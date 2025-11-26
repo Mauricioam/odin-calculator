@@ -1,6 +1,7 @@
 let number1 = "";
 let number2 = "";
 let operator = "";
+let result = "";
 
 let btnSelection = document.querySelector(".btn-container");
 let userDisplay = document.querySelector(".user-num");
@@ -10,7 +11,7 @@ let input = document.createElement("p");
 // inputs numbers and operators fxn
 
 const handleNumberInput = (input) => {
-  if (!number1.length) {
+  if (!number1.length && !isNaN(input)) {
     number1 = input;
   } else if (!operator.length && !isNaN(input)) {
     number1 += input;
@@ -27,6 +28,8 @@ const handleOperator = (input) => {
 };
 //display updated fxns
 const updateDisplay = () => {
+  console.log(result);
+
   if (!operator.length) {
     input.textContent = number1;
     mainDisplay.appendChild(input);
@@ -51,38 +54,27 @@ const btnClicks = (event) => {
   handleNumberInput(userInput);
   handleOperator(userInput);
   updateDisplay();
-  if (userInput == "=") {
-    console.log(operate(number1, operator, number2));
+  console.log(number1, number2);
+  if (
+    (userInput == "=") &
+    (number1 !== undefined && number2 !== undefined && operator !== undefined)
+  ) {
+    input.textContent = operate(number1, operator, number2);
+    resetValues();
+    updateDisplay();
   }
-
-  // if (!isNaN(userInput)) {
-  //   if (!number1.length) {
-  //     number1 = userInput;
-  //   } else if (!operator.length) {
-  //     number1 += userInput;
-  //   } else if (!number2.length) {
-  //     number2 = userInput;
-  //   } else {
-  //     number2 += userInput;
-  //   }
-  // }
-  // console.log(operator);
-  // if (isNaN(userInput)) {
-  //   operator = userInput;
-  // }
-  // if (number2 == 0) {
-  //   input.textContent = number1 + operator;
-  // } else {
-  //   input.textContent = number1 + operator + number2;
-  // }
 };
 
 const convertToNum = (strg) => Number(strg);
+const resetValues = () => {
+  number1 = "";
+  number2 = "";
+  operator = "";
+};
 
 btnSelection.addEventListener("click", btnClicks);
 
 const operate = (num1, operator, num2) => {
-  if (num1 == undefined && num2 == undefined && operator == undefined) return;
   num1 = convertToNum(num1);
   num2 = convertToNum(num2);
 
