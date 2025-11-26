@@ -2,6 +2,7 @@ let number1 = "";
 let number2 = "";
 let operator = "";
 let result = "";
+let calcState = "";
 
 let btnSelection = document.querySelector(".btn-container");
 let userDisplay = document.querySelector(".user-num");
@@ -12,6 +13,7 @@ let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
   if (!number1.length && !isNaN(input)) {
+    calcState = "calc1";
     number1 = input;
   } else if (!operator.length && !isNaN(input)) {
     number1 += input;
@@ -28,22 +30,35 @@ const handleOperator = (input) => {
 };
 //display updated fxns
 const updateDisplay = () => {
-  console.log(result);
+  if (calcState == "calc1") {
+    stateCalc1();
+  }
+  // if (result !== "") {
+  //   console.log(result);
+  //   input.textContent = result;
+  // }
+  // if (!operator.length) {
+  //   input.textContent = number1;
+  //   mainDisplay.appendChild(input);
+  // } else if (!number2.length) {
+  //   deleteDisplay(mainDisplay);
+  //   input.textContent = number1 + operator;
+  //   userDisplay.append(input);
+  // } else if (number2.length) {
+  //   input.textContent = number1 + operator + number2;
+  // }
+};
 
+const stateCalc1 = () => {
   if (!operator.length) {
     input.textContent = number1;
     mainDisplay.appendChild(input);
-  } else if (!number2.length) {
-    deleteDisplay(mainDisplay);
-    input.textContent = number1 + operator;
-    userDisplay.append(input);
-  } else {
-    input.textContent = number1 + operator + number2;
   }
 };
 
 const deleteDisplay = (elem) => {
   elem.remove();
+  console.log(elem);
 };
 
 const btnClicks = (event) => {
@@ -54,14 +69,13 @@ const btnClicks = (event) => {
   handleNumberInput(userInput);
   handleOperator(userInput);
   updateDisplay();
-  console.log(number1, number2);
+
   if (
     (userInput == "=") &
     (number1 !== undefined && number2 !== undefined && operator !== undefined)
   ) {
-    input.textContent = operate(number1, operator, number2);
+    result = operate(number1, operator, number2);
     resetValues();
-    updateDisplay();
   }
 };
 
@@ -70,6 +84,7 @@ const resetValues = () => {
   number1 = "";
   number2 = "";
   operator = "";
+  console.log(number1, number2, operator, "reset");
 };
 
 btnSelection.addEventListener("click", btnClicks);
