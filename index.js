@@ -29,14 +29,27 @@ const handleOperator = (input) => {
     calcState = "calc2";
   }
 };
+
+const handleResult = (input) => {
+  if (
+    (input == "=") &
+    (number1 !== undefined && number2 !== undefined && operator !== undefined)
+  ) {
+    result = operate(number1, operator, number2);
+    resetValues();
+    calcState = "result";
+  }
+};
 //display updated fxns
 const updateDisplay = () => {
   if (calcState == "calc1") {
     stateCalc1();
   }
   if (calcState == "calc2") {
-    console.log("calc2");
     stateCalc2();
+  }
+  if (calcState == "result") {
+    stateResult();
   }
   // if (result !== "") {
   //   console.log(result);
@@ -63,15 +76,16 @@ const stateCalc1 = () => {
 
 const stateCalc2 = () => {
   if (number1.length > 0 && operator.length > 0) {
-    deleteDisplay(mainDisplay);
     input.textContent = number1 + operator + number2;
     userDisplay.appendChild(input);
   }
 };
 
-const deleteDisplay = (elem) => {
-  elem.remove();
-  console.log(elem);
+const stateResult = () => {
+  if (result > 0) {
+    input.textContent = result;
+    mainDisplay.appendChild(input);
+  }
 };
 
 const btnClicks = (event) => {
@@ -81,15 +95,16 @@ const btnClicks = (event) => {
 
   handleNumberInput(userInput);
   handleOperator(userInput);
+  handleResult(userInput);
   updateDisplay();
 
-  if (
-    (userInput == "=") &
-    (number1 !== undefined && number2 !== undefined && operator !== undefined)
-  ) {
-    result = operate(number1, operator, number2);
-    resetValues();
-  }
+  // if (
+  //   (userInput == "=") &
+  //   (number1 !== undefined && number2 !== undefined && operator !== undefined)
+  // ) {
+  //   result = operate(number1, operator, number2);
+  //   resetValues();
+  // }
 };
 
 const convertToNum = (strg) => Number(strg);
@@ -97,7 +112,6 @@ const resetValues = () => {
   number1 = "";
   number2 = "";
   operator = "";
-  console.log(number1, number2, operator, "reset");
 };
 
 btnSelection.addEventListener("click", btnClicks);
@@ -105,7 +119,7 @@ btnSelection.addEventListener("click", btnClicks);
 const operate = (num1, operator, num2) => {
   num1 = convertToNum(num1);
   num2 = convertToNum(num2);
-
+  calcState = "result";
   const add = (num1, num2) => num1 + num2;
   const substract = (num1, num2) => num1 - num2;
   const multiply = (num1, num2) => num1 * num2;
