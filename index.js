@@ -26,12 +26,17 @@ const handleOperator = (input) => {
   if (number2.length) return;
   if (number1.length && isNaN(input) && input !== "=") {
     operator = input;
+    calcState = "calc2";
   }
 };
 //display updated fxns
 const updateDisplay = () => {
   if (calcState == "calc1") {
     stateCalc1();
+  }
+  if (calcState == "calc2") {
+    console.log("calc2");
+    stateCalc2();
   }
   // if (result !== "") {
   //   console.log(result);
@@ -53,6 +58,14 @@ const stateCalc1 = () => {
   if (!operator.length) {
     input.textContent = number1;
     mainDisplay.appendChild(input);
+  }
+};
+
+const stateCalc2 = () => {
+  if (number1.length > 0 && operator.length > 0) {
+    deleteDisplay(mainDisplay);
+    input.textContent = number1 + operator + number2;
+    userDisplay.appendChild(input);
   }
 };
 
