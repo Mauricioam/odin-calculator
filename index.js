@@ -51,20 +51,6 @@ const updateDisplay = () => {
   if (calcState == "result") {
     stateResult();
   }
-  // if (result !== "") {
-  //   console.log(result);
-  //   input.textContent = result;
-  // }
-  // if (!operator.length) {
-  //   input.textContent = number1;
-  //   mainDisplay.appendChild(input);
-  // } else if (!number2.length) {
-  //   deleteDisplay(mainDisplay);
-  //   input.textContent = number1 + operator;
-  //   userDisplay.append(input);
-  // } else if (number2.length) {
-  //   input.textContent = number1 + operator + number2;
-  // }
 };
 
 const stateCalc1 = () => {
