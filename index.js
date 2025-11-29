@@ -36,6 +36,7 @@ const handleResult = (input) => {
     (number1 !== undefined && number2 !== undefined && operator !== undefined)
   ) {
     result = operate(number1, operator, number2);
+    number1 = result.toString();
     resetValues();
     calcState = "result";
   }
@@ -83,19 +84,10 @@ const btnClicks = (event) => {
   handleOperator(userInput);
   handleResult(userInput);
   updateDisplay();
-
-  // if (
-  //   (userInput == "=") &
-  //   (number1 !== undefined && number2 !== undefined && operator !== undefined)
-  // ) {
-  //   result = operate(number1, operator, number2);
-  //   resetValues();
-  // }
 };
 
 const convertToNum = (strg) => Number(strg);
 const resetValues = () => {
-  number1 = "";
   number2 = "";
   operator = "";
 };
