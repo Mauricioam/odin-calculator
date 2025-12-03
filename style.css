@@ -11,7 +11,7 @@ body {
 }
 .container {
   min-height: 350px;
-  min-width: 250px;
+  max-width: 250px;
   border: 1px solid red;
 }
 .display {
@@ -34,4 +34,10 @@ button {
 
 .user-num {
   border: 2px solid orange;
+}
+
+.btn-container {
+  border: 1px solid purple;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -9,8 +9,6 @@ let userDisplay = document.querySelector(".user-num");
 let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
-// inputs numbers and operators fxn
-
 const handleNumberInput = (input) => {
   if (!number1.length && !isNaN(input)) {
     calcState = "calc1";
@@ -41,7 +39,7 @@ const handleResult = (input) => {
     calcState = "result";
   }
 };
-//display updated fxns
+
 const updateDisplay = () => {
   if (calcState == "calc1") {
     stateCalc1();
