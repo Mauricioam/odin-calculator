@@ -80,16 +80,31 @@ const btnClicks = (event) => {
   if (event.target.tagName !== "BUTTON") return;
   let userInput = event.target.value;
 
-  handleNumberInput(userInput);
-  handleOperator(userInput);
-  handleResult(userInput);
-  updateDisplay();
+  if (userInput == "clear") {
+    hardResetValues();
+    updateDisplay();
+  }
+
+  if (userInput !== "clear") {
+    handleNumberInput(userInput);
+    handleOperator(userInput);
+    handleResult(userInput);
+    updateDisplay();
+  }
 };
 
 const convertToNum = (strg) => Number(strg);
 const resetValues = () => {
   number2 = "";
   operator = "";
+};
+
+const hardResetValues = () => {
+  number1 = "";
+  number2 = "";
+  operator = "";
+  calcState = "";
+  input.textContent = "";
 };
 
 btnSelection.addEventListener("click", btnClicks);
