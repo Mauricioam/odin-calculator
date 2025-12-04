@@ -42,12 +42,21 @@ button {
   flex-wrap: wrap;
 }
 button {
-  border-radius: 8px;
+  flex: 1;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+
   background-color: #9fd3c7;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-
+.clear {
+  background-color: #dc3030;
+}
+.equal {
+  background-color: #73af6f;
+}
 button:hover {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
