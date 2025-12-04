@@ -10,8 +10,10 @@ let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
-  if (!number1.length && !isNaN(input) && !operator.length) {
+  if (!isNaN(input) && !operator.length) {
     calcState = "calc1";
+    number1 += input;
+  } else if (!operator.length && !isNaN(input)) {
     number1 += input;
   } else if (number1.length && operator.length && !isNaN(input)) {
     number2 += input;
@@ -33,6 +35,7 @@ const handleResult = (input) => {
   ) {
     result = operate(number1, operator, number2);
     number1 = result.toString();
+
     resetValues();
     calcState = "result";
   }
@@ -91,7 +94,6 @@ const btnClicks = (event) => {
 
 const convertToNum = (strg) => Number(strg);
 const resetValues = () => {
-  number1 = "";
   number2 = "";
   operator = "";
 };
