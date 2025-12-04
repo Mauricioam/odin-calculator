@@ -41,3 +41,14 @@ button {
   display: flex;
   flex-wrap: wrap;
 }
+button {
+  border-radius: 8px;
+  background-color: #9fd3c7;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
