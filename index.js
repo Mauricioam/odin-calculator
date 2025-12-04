@@ -91,6 +91,7 @@ const btnClicks = (event) => {
 
 const convertToNum = (strg) => Number(strg);
 const resetValues = () => {
+  number1 = "";
   number2 = "";
   operator = "";
 };
