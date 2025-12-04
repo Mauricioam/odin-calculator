@@ -10,13 +10,19 @@ body {
   height: 100vh;
 }
 .container {
+  padding: 7px;
+  background-color: gray;
   min-height: 350px;
   max-width: 250px;
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
 }
 .display {
-  border: 1px solid salmon;
   min-height: 80px;
+  background-color: #008000; /* A shade of green */
+  color: #ffffff;
+  border-radius: 8px;
   padding: 5px;
   display: flex;
   flex-direction: column-reverse;
@@ -29,24 +35,19 @@ button {
 
 .display-num {
   font-size: 30px;
-  border: 1px solid salmon;
-}
-
-.user-num {
-  border: 2px solid orange;
 }
 
 .btn-container {
-  border: 1px solid purple;
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
 }
 button {
-  flex: 1;
+  flex: 1 0 25%;
   border-radius: 6px;
   padding: 12px;
+  margin: 2px;
   font-size: 16px;
-
   background-color: #9fd3c7;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
