@@ -10,10 +10,10 @@ let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
-  if (!isNaN(input) && !number1.length) {
+  if (!isNaN(input) && (!number1.length || calcState == "result")) {
     calcState = "calc1";
     number1 = input;
-  } else if (!operator.length && !isNaN(input) && !result.length) {
+  } else if (!operator.length && !isNaN(input) && calcState == "calc1") {
     number1 += input;
   } else if (number1.length && operator.length && !isNaN(input)) {
     number2 += input;
