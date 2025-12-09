@@ -29,15 +29,13 @@ const handleOperator = (input) => {
 };
 
 const handleResult = (input) => {
-  if (
-    (input == "=") &
-    (number1 !== undefined && number2 !== undefined && operator !== undefined)
-  ) {
+  console.log(number1, operator, number2);
+  if (isNaN(input) & (number1.length && number2.length && operator.length)) {
     result = operate(number1, operator, number2);
     result = result.toString();
     number1 = result;
-    resetValues();
     calcState = "result";
+    resetValues();
   }
 };
 
