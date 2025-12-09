@@ -10,7 +10,7 @@ let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
-  if (!isNaN(input) && (!number1.length || calcState == "result")) {
+  if (!isNaN(input) && !number1.length) {
     calcState = "calc1";
     number1 = input;
   } else if (!operator.length && !isNaN(input) && calcState == "calc1") {
