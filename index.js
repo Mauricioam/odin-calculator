@@ -21,21 +21,36 @@ const handleNumberInput = (input) => {
 };
 
 const handleOperator = (input) => {
-  if (number2.length) return;
-  if (number1.length && isNaN(input) && input !== "=") {
+  console.log(number1, operator, number2);
+
+  if (calcState == "calc1" && number1.length && isNaN(input) && input !== "=") {
     operator = input;
     calcState = "calc2";
+  }
+  if (
+    calcState == "calc2" &&
+    !number2.length &&
+    isNaN(input) &&
+    input !== "="
+  ) {
+    operator = input;
+  }
+  if (calcState == "result" && input == "=") {
+    resetValues();
+  }
+  if (calcState === "result" && ["+", "-", "*", "/"].includes(input)) {
+    operator = input;
+    number1 = result.toString();
+    number2 = "";
+    calcState = "calc2";
+    return;
   }
 };
 
 const handleResult = (input) => {
-  console.log(number1, operator, number2);
   if (isNaN(input) & (number1.length && number2.length && operator.length)) {
     result = operate(number1, operator, number2);
-    result = result.toString();
-    number1 = result;
     calcState = "result";
-    resetValues();
   }
 };
 
