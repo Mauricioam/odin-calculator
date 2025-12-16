@@ -5,7 +5,7 @@ let result = "";
 let calcState = "";
 
 let btnSelection = document.querySelector(".btn-container");
-let userDisplay = document.querySelector(".user-num");
+
 let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
@@ -76,7 +76,7 @@ const stateCalc1 = () => {
 const stateCalc2 = () => {
   if (number1.length > 0 && operator.length > 0) {
     input.textContent = number1 + operator + number2;
-    userDisplay.appendChild(input);
+    mainDisplay.appendChild(input);
   }
 };
 
