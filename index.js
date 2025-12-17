@@ -75,6 +75,7 @@ const btnClicks = (event) => {
   let userInput = event.target.value;
 
   if (userInput == "clear") {
+    console.log("clear");
     hardResetValues();
     updateDisplay();
   }
@@ -97,7 +98,7 @@ const hardResetValues = () => {
   number1 = "";
   number2 = "";
   operator = "";
-
+  result = "";
   input.textContent = "";
 };
 
