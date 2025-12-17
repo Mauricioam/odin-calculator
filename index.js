@@ -2,7 +2,6 @@ let number1 = "";
 let number2 = "";
 let operator = "";
 let result = "";
-let calcState = "";
 
 let btnSelection = document.querySelector(".btn-container");
 
@@ -11,9 +10,8 @@ let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
   if (!isNaN(input) && !number1.length) {
-    calcState = "calc1";
     number1 = input;
-  } else if (!operator.length && !isNaN(input) && calcState == "calc1") {
+  } else if (!operator.length && !isNaN(input)) {
     number1 += input;
   } else if (number1.length && operator.length && !isNaN(input)) {
     number2 += input;
@@ -23,47 +21,30 @@ const handleNumberInput = (input) => {
 const handleOperator = (input) => {
   console.log(number1, operator, number2);
 
-  if (calcState == "calc1" && number1.length && isNaN(input) && input !== "=") {
-    operator = input;
-    calcState = "calc2";
-  }
-  if (
-    calcState == "calc2" &&
-    !number2.length &&
-    isNaN(input) &&
-    input !== "="
-  ) {
+  if (number1.length && isNaN(input) && input !== "=") {
     operator = input;
   }
-  if (calcState == "result" && input == "=") {
+  if (input == "=") {
     resetValues();
-  }
-  if (calcState === "result" && ["+", "-", "*", "/"].includes(input)) {
-    operator = input;
-    number1 = result.toString();
-    number2 = "";
-    calcState = "calc2";
-    return;
   }
 };
 
 const handleResult = (input) => {
   if (isNaN(input) & (number1.length && number2.length && operator.length)) {
     result = operate(number1, operator, number2);
-    calcState = "result";
   }
 };
 
 const updateDisplay = () => {
   input.textContent = number1 + operator + number2;
   mainDisplay.appendChild(input);
-  //   if (calcState == "calc1") {
+  //   if ( == "calc1") {
   //     stateCalc1();
   //   }
-  //   if (calcState == "calc2") {
+  //   if ( == "calc2") {
   //     stateCalc2();
   //   }
-  //   if (calcState == "result") {
+  //   if ( == "result") {
   //     stateResult();
   //   }
 };
@@ -117,7 +98,7 @@ const hardResetValues = () => {
   number1 = "";
   number2 = "";
   operator = "";
-  calcState = "";
+
   input.textContent = "";
 };
 
@@ -126,7 +107,7 @@ btnSelection.addEventListener("click", btnClicks);
 const operate = (num1, operator, num2) => {
   num1 = convertToNum(num1);
   num2 = convertToNum(num2);
-  calcState = "result";
+
   const add = (num1, num2) => num1 + num2;
   const substract = (num1, num2) => num1 - num2;
   const multiply = (num1, num2) => num1 * num2;
