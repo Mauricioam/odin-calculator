@@ -55,37 +55,39 @@ const handleResult = (input) => {
 };
 
 const updateDisplay = () => {
-  if (calcState == "calc1") {
-    stateCalc1();
-  }
-  if (calcState == "calc2") {
-    stateCalc2();
-  }
-  if (calcState == "result") {
-    stateResult();
-  }
+  input.textContent = number1 + operator + number2;
+  mainDisplay.appendChild(input);
+  //   if (calcState == "calc1") {
+  //     stateCalc1();
+  //   }
+  //   if (calcState == "calc2") {
+  //     stateCalc2();
+  //   }
+  //   if (calcState == "result") {
+  //     stateResult();
+  //   }
 };
 
-const stateCalc1 = () => {
-  if (!operator.length) {
-    input.textContent = number1;
-    mainDisplay.appendChild(input);
-  }
-};
+// const stateCalc1 = () => {
+//   if (!operator.length) {
+//     input.textContent = number1;
+//     mainDisplay.appendChild(input);
+//   }
+// };
 
-const stateCalc2 = () => {
-  if (number1.length > 0 && operator.length > 0) {
-    input.textContent = number1 + operator + number2;
-    mainDisplay.appendChild(input);
-  }
-};
+// const stateCalc2 = () => {
+//   if (number1.length > 0 && operator.length > 0) {
+//     input.textContent = number1 + operator + number2;
+//     mainDisplay.appendChild(input);
+//   }
+// };
 
-const stateResult = () => {
-  if (result > 0) {
-    input.textContent = result;
-    mainDisplay.appendChild(input);
-  }
-};
+// const stateResult = () => {
+//   if (result > 0) {
+//     input.textContent = result;
+//     mainDisplay.appendChild(input);
+//   }
+// };
 
 const btnClicks = (event) => {
   event.preventDefault();
