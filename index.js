@@ -11,7 +11,7 @@ let input = document.createElement("p");
 const handleNumberInput = (input) => {
   if (!number1.length) {
     number1 = input;
-  } else if (number1.length && !result.length) {
+  } else if (number1.length && !result.length && !operator.length) {
     number1 += input;
   } else if (number1.length && operator.length) {
     number2 += input;
@@ -19,24 +19,20 @@ const handleNumberInput = (input) => {
   updateDisplay();
 };
 const handleOperator = (input) => {
-  if (number1.length && !number2.length && isNaN(input) && input !== "=") {
+  if (number1.length && !number2.length && input !== "=") {
     operator = input;
   }
   updateDisplay();
 };
 
 const handleResult = (input) => {
-  if (
-    typeof result == "string" &&
-    ["+", "-", "/", "*"].includes(input) &&
-    number2.length &&
-    input !== "="
-  ) {
+  if (result == "" && ["+", "-", "/", "*"].includes(input)) {
     result = operate(number1, operator, number2);
     number1 = result.toString();
     operator = input;
-    console.log("entree");
+    number2 = "";
   }
+  updateDisplay();
 };
 
 const updateDisplay = () => {
@@ -86,7 +82,9 @@ const btnClicks = (event) => {
   if (userInput == "clear") {
     hardResetValues();
   }
-
+  if (number1.length && number2.length) {
+    handleResult(userInput);
+  }
   if (Number(userInput)) {
     handleNumberInput(userInput);
   }
