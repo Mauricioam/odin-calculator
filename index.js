@@ -24,8 +24,16 @@ const handleOperator = (input) => {
 };
 
 const handleResult = (input) => {
-  if (isNaN(input) & (number1.length && number2.length && operator.length)) {
+  if (
+    typeof result == "string" &&
+    ["+", "-", "/", "*"].includes(input) &&
+    number2.length &&
+    input !== "="
+  ) {
     result = operate(number1, operator, number2);
+    number1 = result.toString();
+    operator = input;
+    console.log("entree");
   }
 };
 
@@ -73,9 +81,7 @@ const btnClicks = (event) => {
   event.preventDefault();
   if (event.target.tagName !== "BUTTON") return;
   let userInput = event.target.value;
-
   if (userInput == "clear") {
-    console.log("clear");
     hardResetValues();
     updateDisplay();
   }
