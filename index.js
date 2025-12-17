@@ -17,15 +17,9 @@ const handleNumberInput = (input) => {
     number2 += input;
   }
 };
-
 const handleOperator = (input) => {
-  console.log(number1, operator, number2);
-
-  if (number1.length && isNaN(input) && input !== "=") {
+  if (number1.length && !number2.length && isNaN(input) && input !== "=") {
     operator = input;
-  }
-  if (input == "=") {
-    resetValues();
   }
 };
 
@@ -36,8 +30,13 @@ const handleResult = (input) => {
 };
 
 const updateDisplay = () => {
-  input.textContent = number1 + operator + number2;
   mainDisplay.appendChild(input);
+  if (typeof result == "string") {
+    input.textContent = number1 + operator + number2;
+  }
+  if (typeof result == "number") {
+    input.textContent = result.toString();
+  }
   //   if ( == "calc1") {
   //     stateCalc1();
   //   }
