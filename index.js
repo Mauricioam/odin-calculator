@@ -9,9 +9,10 @@ let mainDisplay = document.querySelector(".display-num");
 let input = document.createElement("p");
 
 const handleNumberInput = (input) => {
-  if (!isNaN(input) && !number1.length) {
+  console.log(number1, number2);
+  if (!number1.length) {
     number1 = input;
-  } else if (!operator.length && !isNaN(input)) {
+  } else if (number1.length && !result.length) {
     number1 += input;
   } else if (number1.length && operator.length && !isNaN(input)) {
     number2 += input;
@@ -83,14 +84,10 @@ const btnClicks = (event) => {
   let userInput = event.target.value;
   if (userInput == "clear") {
     hardResetValues();
-    updateDisplay();
   }
 
-  if (userInput !== "clear") {
+  if (Number(userInput)) {
     handleNumberInput(userInput);
-    handleOperator(userInput);
-    handleResult(userInput);
-    updateDisplay();
   }
 };
 
