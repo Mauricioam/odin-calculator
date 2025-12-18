@@ -28,8 +28,8 @@ const handleOperator = (input) => {
 const handleResult = (input) => {
   if (input == "=") {
     result = operate(number1, operator, number2);
-    number1 = result.toString();
-    result = "";
+    result.toString();
+
     operator = "";
     number2 = "";
   }
@@ -53,6 +53,9 @@ const updateDisplay = () => {
   }
   if (number2) {
     input.textContent = number1 + operator + number2;
+  }
+  if (result) {
+    input.textContent = result;
   }
 };
 
