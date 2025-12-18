@@ -26,9 +26,15 @@ const handleOperator = (input) => {
 };
 
 const handleResult = (input) => {
+  if (input == "=") {
+    result = operate(number1, operator, number2);
+    resetValues();
+    console.log("enter");
+  }
   if (result == "" && ["+", "-", "/", "*"].includes(input)) {
     result = operate(number1, operator, number2);
     number1 = result.toString();
+    result = "";
     operator = input;
     number2 = "";
   }
@@ -37,43 +43,19 @@ const handleResult = (input) => {
 
 const updateDisplay = () => {
   mainDisplay.appendChild(input);
-  if (typeof result == "string") {
+  if (number1) {
+    input.textContent = number1;
+  }
+  if (operator) {
+    input.textContent = number1 + operator;
+  }
+  if (number2) {
     input.textContent = number1 + operator + number2;
   }
-  if (typeof result == "number") {
-    input.textContent = result.toString();
+  if (result) {
+    input.textContent = result;
   }
-  //   if ( == "calc1") {
-  //     stateCalc1();
-  //   }
-  //   if ( == "calc2") {
-  //     stateCalc2();
-  //   }
-  //   if ( == "result") {
-  //     stateResult();
-  //   }
 };
-
-// const stateCalc1 = () => {
-//   if (!operator.length) {
-//     input.textContent = number1;
-//     mainDisplay.appendChild(input);
-//   }
-// };
-
-// const stateCalc2 = () => {
-//   if (number1.length > 0 && operator.length > 0) {
-//     input.textContent = number1 + operator + number2;
-//     mainDisplay.appendChild(input);
-//   }
-// };
-
-// const stateResult = () => {
-//   if (result > 0) {
-//     input.textContent = result;
-//     mainDisplay.appendChild(input);
-//   }
-// };
 
 const btnClicks = (event) => {
   event.preventDefault();
@@ -95,6 +77,7 @@ const btnClicks = (event) => {
 
 const convertToNum = (strg) => Number(strg);
 const resetValues = () => {
+  number1 = "";
   number2 = "";
   operator = "";
 };
