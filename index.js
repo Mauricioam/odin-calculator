@@ -2,6 +2,7 @@ let number1 = "";
 let number2 = "";
 let operator = "";
 let result = "";
+let mustResetDisplay = false;
 
 let btnSelection = document.querySelector(".btn-container");
 
@@ -11,7 +12,7 @@ let input = document.createElement("p");
 const handleNumberInput = (input) => {
   if (!number1.length) {
     number1 = input;
-  } else if (number1.length && !result.length && !operator.length) {
+  } else if (number1.length && !mustResetDisplay && !operator.length) {
     number1 += input;
   } else if (number1.length && operator.length) {
     number2 += input;
@@ -28,23 +29,28 @@ const handleOperator = (input) => {
 const handleResult = (input) => {
   if (input == "=") {
     result = operate(number1, operator, number2);
-    number1 = result.toString();
-    result = "";
     operator = "";
     number2 = "";
+    mustResetDisplay = true;
   }
   if (result == "" && ["+", "-", "/", "*"].includes(input)) {
+    console.log("not equal");
     result = operate(number1, operator, number2);
-    number1 = result.toString();
-    result = "";
     operator = input;
     number2 = "";
+    mustResetDisplay = true;
   }
   updateDisplay();
 };
 
 const updateDisplay = () => {
   mainDisplay.appendChild(input);
+  console.log(result, number1);
+  if (result !== "") {
+    input.textContent = result.toString();
+    return;
+  }
+
   if (number1) {
     input.textContent = number1;
   }
@@ -63,13 +69,24 @@ const btnClicks = (event) => {
   if (userInput == "clear") {
     hardResetValues();
   }
-  if (number1.length && number2.length) {
+  if (number1.length && number2.length && operator.length) {
     handleResult(userInput);
   }
+
   if (Number(userInput)) {
+    if (mustResetDisplay) {
+      number1 = "";
+      result = "";
+      mustResetDisplay = false;
+    }
     handleNumberInput(userInput);
   }
-  if (!Number(userInput)) {
+  if (!Number(userInput) && userInput !== "=") {
+    if (mustResetDisplay) {
+      number1 = result.toString();
+      mustResetDisplay = false;
+      result = "";
+    }
     handleOperator(userInput);
   }
 };
